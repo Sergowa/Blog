@@ -1,0 +1,8 @@
+<% @publications.each do |publication| %>
+	<div class="post_wrapper">
+		<h2 class="title"> <%= link_to publication.title, publication %> </h2>
+		<p class="date">
+			<%= publication.created_at.strftime("%B, %d, %Y") %>
+		</p>
+	</div>
+<% end %>
