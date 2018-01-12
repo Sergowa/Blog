@@ -1,11 +1,13 @@
-<h1 class="title">
-	<%= @publication.title %>
-</h1>
+<div id="post_content">
+	<h1 class="title">
+		<%= @publication.title %>
+	</h1>
 
-<p class="date">
-	Submitted <%= time_ago_in_words(@publication.created_at) %> Ago
-</p>
+	<p class="date">
+		Создано <%= time_ago_in_words(@publication.created_at) %> назад
+	</p>
 
-<p class="body">
-	<%= @publication.body %>
-</p>
+	<p class="body">
+		<%= @publication.body %>
+	</p>
+</div>
