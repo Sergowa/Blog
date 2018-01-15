@@ -3,7 +3,16 @@
 
 	<!-- Делаем форму для создания новых публикаций-->
 	<%= form_for :publication, url: publications_path do |f| %>
-		
+		<% if @publication.errors.any? %>
+			<div id="errors">
+				<h2><%= pluralize(@publication.errors.count, "error") %> prevented this publication from saving</h2>
+				<ul>
+					<% @publication.errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>	
 	<p>
 		<%= f.label :title %> <br> <!-- Название текстового поля-->
 		<%= f.text_field :title %> <!-- Само текстовое поле-->

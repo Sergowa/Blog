@@ -5,13 +5,17 @@ class PublicationsController < ApplicationController
 	end
 	
 	def new
+		@publication = Publication.new #Cоздали при проверке заполнености и условие при сохранении в методе create
 	end
 
 	def create
 		@publication = Publication.new(publication_params) #Создание и сохранение публикации со странички NEW
-		@publication.save
-
-		redirect_to @publication
+		
+		if @publication.save
+			redirect_to @publication
+		else
+			render 'new'	
+		end
 	end
 
 	def show
