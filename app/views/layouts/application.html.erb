@@ -19,7 +19,7 @@
   		<ul>
   			<li class="category">Website</li>
   			<li><%= link_to "Блог", root_path %></li>
-  			<li>Обо мне</li>
+  			<li><%= link_to "Обо мне", about_path %></li>
   		</ul>
 
   		<ul>
@@ -35,7 +35,14 @@
 
   	<div id="main_content">
   		<div id="header">
-  			<p>Все публикации</p>
+        <% if current_page?(root_path) %>
+  			 <p>Все публикации</p>
+        <% elsif current_page?(about_path) %>
+         <p>Обо мне</p>
+        <% else %>
+         <%= link_to "Вернуться к публикациям", root_path %>
+        <% end %>
+           
   			<div class="buttons">
   					 <%= link_to new_publication_path do %> 
   					 <button class="button">Новая публикация</button> 
