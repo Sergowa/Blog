@@ -12,4 +12,12 @@
 	<p class="body">
 		<%= @publication.body %>
 	</p>
+
+	<div id="comments">
+		<h2> <%= @publication.comments.count %> комментариев</h2>
+		<%= render @publication.comments %>
+
+		<h3>Добавить комментарий:</h3>
+		<%= render "comments/form" %>
+	</div>
 </div>
