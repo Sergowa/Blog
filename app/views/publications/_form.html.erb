@@ -1,0 +1,27 @@
+	<!-- Делаем форму для редактирования созданных публикаций-->
+	<%= form_for @publication do |f| %>
+		<% if @publication.errors.any? %>
+			<div id="errors">
+				<h2><%= pluralize(@publication.errors.count, "error") %> prevented this publication from saving</h2>
+				<ul>
+					<% @publication.errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>	
+	<p>
+		<%= f.label :title %> <br> <!-- Название текстового поля-->
+		<%= f.text_field :title %> <!-- Само текстовое поле-->
+	</p>	
+		
+	<p>
+		<%= f.label :body %><br> <!-- Название текстового поля самой публикации-->
+		<%= f.text_area :body %> <!-- Сама публикация -->
+	</p>
+
+	<p>
+		<%= f.submit %> <!-- Кнопка создания публикации -->
+	</p>	
+
+	<% end %>	

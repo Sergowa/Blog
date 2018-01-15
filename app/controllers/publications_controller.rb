@@ -22,6 +22,27 @@ class PublicationsController < ApplicationController
 		@publication = Publication.find(params[:id]) #Просмотр созданой публикации
 	end
 
+	def edit
+		@publication = Publication.find(params[:id]) 
+	end	
+
+	def update
+		@publication = Publication.find(params[:id])
+
+		if @publication.update(params[:publication].permit(:title, :body))
+			redirect_to @publication
+		else
+			render 'edit'
+		end		
+	end	
+
+	def destroy
+		@publication = Publication.find(params[:id])
+		@publication.destroy
+
+		redirect_to root_path
+	end	
+
 private
 	def publication_params
 		params.require(:publication).permit(:title, :body) #Статические параметры, которые проверяются при создании

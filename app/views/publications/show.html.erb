@@ -5,6 +5,8 @@
 
 	<p class="date">
 		Создано <%= time_ago_in_words(@publication.created_at) %> назад
+		| <%= link_to 'Редактировать', edit_publication_path(@publication) %>
+		| <%= link_to 'Удалить', publication_path(@publication), method: :delete, data: { confirm: 'Вы уверены?'} %>
 	</p>
 
 	<p class="body">
