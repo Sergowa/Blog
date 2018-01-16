@@ -2,13 +2,15 @@
 	<h1 class="title">
 		<%= @publication.title %>
 	</h1>
-
+	
 	<p class="date">
 		Создано <%= time_ago_in_words(@publication.created_at) %> назад
+		<% if @publication.user == current_user %>
 		| <%= link_to 'Редактировать', edit_publication_path(@publication) %>
 		| <%= link_to 'Удалить', publication_path(@publication), method: :delete, data: { confirm: 'Вы уверены?'} %>
+		<% end %>
 	</p>
-
+	
 	<p class="body">
 		<%= @publication.body %>
 	</p>

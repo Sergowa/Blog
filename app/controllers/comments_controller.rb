@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
-	
+	before_action :authenticate_user!
+
 	def create
 		@publication = Publication.find(params[:publication_id])
 		@comment = @publication.comments.create(params[:comment].permit(:name, :body))

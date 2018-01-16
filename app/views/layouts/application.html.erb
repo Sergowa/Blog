@@ -30,7 +30,6 @@
   			<li><a href="https://www.javascript.com/">JavaScript</a></li>
   		</ul>
   		
-  		<p class="sign_in">Admin Login</p>
   	</div>
 
   	<div id="main_content">
@@ -44,10 +43,28 @@
         <% end %>
            
   			<div class="buttons">
-  					 <%= link_to new_publication_path do %> 
-  					 <button class="button">Новая публикация</button> 
+
+  				<% if user_signed_in? %>
+             <%= link_to new_publication_path do %> 
+  				  	 <button class="button">Новая публикация</button> 
   					 <% end %>﻿
+             <%= link_to edit_user_registration_path do %> 
+               <button class="button">Аккаунт</button> 
+             <% end %>﻿
+          <% end %>﻿
+
+          <% if !user_signed_in? %> 
+            <%= link_to new_user_session_path do %>
+              <button class="button">Вход</button>
+            <% end %>
+            <%= link_to new_user_registration_path do %>
+              <button class="button">Регистрация</button>
+            <% end %>  
+          <% else %>
+          <%= link_to destroy_user_session_path, :method => :delete do %>
 					<button class="button">Выход</button>
+          <% end %>
+          <% end %>
 			</div>
   		</div>
 

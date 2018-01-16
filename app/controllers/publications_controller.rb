@@ -1,16 +1,19 @@
 class PublicationsController < ApplicationController
+	before_action :authenticate_user!, except: [:index, :show] #Для того чтобы незарегистрированный пользователь не мог ничего делать 
+
 
 	def index
 		@publications = Publication.all.order('created_at DESC') #Для отображения всех публикация от новой к старой на главной странице
 	end
 	
 	def new
-		@publication = Publication.new #Cоздали при проверке заполнености и условие при сохранении в методе create
+		@publication = current_user.publications.build #Создание привязки публикации к id юзеру
+		#@publication = Publication.new #Cоздали при проверке заполнености и условие при сохранении в методе create
 	end
 
 	def create
-		@publication = Publication.new(publication_params) #Создание и сохранение публикации со странички NEW
-		
+		#@publication = Publication.new(publication_params) #Создание и сохранение публикации со странички NEW
+		@publication = current_user.publications.build(publication_params) #Создание привязки публикации к id юзеру
 		if @publication.save
 			redirect_to @publication
 		else
